@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dojo Arena</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let url;
+            // get rid of this object
+            $("button").hover(function() { 
+                var background = {
+                Paris: "url('images/paris.jpg')",
+                London: "url('images/london.jpg')",
+                Kyoto: "url('images/kyoto.jpg')",
+                Taipei: "url('images/taipei.jpg')",
+                Beijing: "url('images/beijing.jpg')",
+                Cairo: "url('images/cairo.jpg')"
+                }
+                
+                // $("button").click(function() {
+                    // $(".screen").css({"background-image": "images/" + $(this).text() + ".jpg"})
+                // })
+                
+                // get rid of this for loop
+                for (let key in background) {
+                    if (key == $(this).text()) {
+                        $(".screen").css({"background-image": background[key], "background-size": "cover"});
+                        url = background[key];
+                        return url;
+                    }
+                }
+            }, 
+            
+                function() {
+                    $(".screen").css("background-image","none");
+                }   
+            )
+
+            $(document).on("click", "button", function(){
+                $(".selection").remove();
+                $(".player").show();
+                $(".screen").css({"background-image": url, "background-size": "cover"});
+            })
+
+            $(document).on("click", ".player1", function() {
+                $("#location1").attr(("src"), $(this).val());
+                $("#location1").show();
+            })
+
+            $(document).on("click", ".player2", function() {
+                $("#location2").attr(("src"), $(this).val());
+                $("#location2").show();
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="screen">
+            <div class="characterFrame">
+                <img id="location1" src="">
+            </div>
+            <div class="menu">
+                <div class="selection">
+                    <h1>Select Arena</h1>
+                    <button>Paris</button>
+                    <button>London</button>
+                    <button>Kyoto</button>
+                    <button>Taipei</button>
+                    <button>Beijing</button>
+                    <button>Cairo</button>
+                </div>
+                <div class="player">
+                    <h1>Select Players</h1>
+                    <select class="player1">
+                        <option value="images/donny.png">Donny</option>
+                        <option value="images/leo.png">Leo</option>
+                        <option value="images/mikey.png">Mikey</option>
+                        <option value="images/raphael.png">Raphael</option>
+                    </select>
+                    <select class="player2">
+                        <option value="images/donny.png">Donny</option>
+                        <option value="images/leo.png">Leo</option>
+                        <option value="images/mikey.png">Mikey</option>
+                        <option value="images/raphael.png">Raphael</option>
+                    </select>
+                </div>
+            </div>
+            <div class="characterFrame">
+                <img id="location2" src="">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
